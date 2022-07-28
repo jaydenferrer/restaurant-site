@@ -20,6 +20,9 @@ connectMongoose()
         console.log(err, "Couldn't not sucessfully connect to mongo database");
     })
 
+// export node-fetch
+// used to have access to fetch function 
+const fetch = require('node-fetch');
 
 
 
@@ -34,7 +37,8 @@ connectMongoose()
 
 
 
-    
+
+
 // creates get route handler for path '/'
 app.get('/', (req, res) => {
     res.send("Home page");

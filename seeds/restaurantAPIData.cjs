@@ -19,12 +19,13 @@ async function getBurgerRestaurantData() {
     }
 }
 
-getBurgerRestaurantData()
-    .then((burgerData) => {
-        console.log(burgerData[0].name);
-        globalBurgerData = burgerData;
-    })
+// getBurgerRestaurantData()
+//     .then((burgerData) => {
+//         console.log(burgerData[0].name);
+//         // module.exports = burgerData;
+//     })
 
+module.exports = getBurgerRestaurantData;
 
-console.log(globalBurgerData[0].country)
-// need a way to extract the burgerData and export it gloabbaly 
+// console.log(globalBurgerData[0].country)
+// // need a way to extract the burgerData and export it gloabbaly 
