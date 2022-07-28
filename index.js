@@ -4,7 +4,37 @@ const app = express();
 // set up default port of 3000
 const port = 3000;
 
+// connect to mongo database using mongoose
+const mongoose = require('mongoose');
+// create async function that opens a connection to our database 
+async function connectMongoose() {
+    // returns a promise
+    await mongoose.connect('mongodb://localhost:27017/restaurantSite')
+}
+// call function to try and connect to database, returns a promise, can then and catch
+connectMongoose()
+    .then(() => {
+        console.log("Sucessfully connected to the mongo database, 'restaurantSite'");
+    })
+    .catch((err) => {
+        console.log(err, "Couldn't not sucessfully connect to mongo database");
+    })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 // creates get route handler for path '/'
 app.get('/', (req, res) => {
     res.send("Home page");
