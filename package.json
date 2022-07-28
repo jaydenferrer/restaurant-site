@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/jaydenferrer/restaurant-site#readme",
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mongoose": "^6.5.0",
     "node-fetch": "^2.6.7"
-  },
-  "type": "module"
+  }
 }
+

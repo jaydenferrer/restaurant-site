@@ -23,6 +23,13 @@ connectMongoose()
 // export node-fetch
 // used to have access to fetch function 
 const fetch = require('node-fetch');
+// export path module 
+const path = require('path');
+
+// set up ejs 
+// app.set('view engine', 'ejs');
+const ejs = require('ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 
 
@@ -46,27 +53,27 @@ app.get('/', (req, res) => {
 
 // home route handler
 app.get('/home', (req, res) => {
-    res.send("Actual home page");
+    res.render('main_routes/home.ejs');
 })
 
 // menu route handler
 app.get("/menu", (req, res) => {
-    res.send("menu page");
+    res.render('main_routes/menu.ejs');
 })
 
 // locations route handler
 app.get('/locations', (req, res) => {
-    res.send("location page");
+    res.render('main_routes/location.ejs');
 })
 
 // reservations route handler
 app.get('/reservations', (req, res) => {
-    res.send("reservations page");
+    res.render('main_routes/reservations.ejs');
 })
 
 // order now route handler
 app.get('/order', (req, res) => {
-    res.send("order now page");
+    res.render('main_routes/order.ejs');
 })
 
 // creating a handler that listens for connections on the specified host and port 
