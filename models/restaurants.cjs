@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 // defines our restaurant schema (how data should be stored in the mongo db)
 const restaurantSchema = new mongoose.Schema({
     name: String,
-    image: String,
+    img: String,
     rate: Number,
-    description: String,
-    Country: String
+    dsc: String,
+    country: String
 })
 
 // create a model using our schema
