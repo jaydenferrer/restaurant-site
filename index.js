@@ -35,6 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 // export Restaurants model
 const Restaurant = require('./models/restaurants.cjs');
+const { findById } = require('./models/restaurants.cjs');
 
 
 
@@ -94,6 +95,17 @@ app.post('/restaurants', async (req, res) => {
     console.log(result);
     res.redirect('/restaurants')
 })
+
+
+// individual show route: /restaurants/:id
+app.get('/restaurants/:id', async (req, res) => {
+    // need to search for restaurant given the id
+    const id = req.params.id;
+    const foundRestaurant = await Restaurant.findById(id);
+    res.render('restaurant_crud/show.ejs', { foundRestaurant })
+
+})
+
 
 // locations route handler
 app.get('/locations', (req, res) => {

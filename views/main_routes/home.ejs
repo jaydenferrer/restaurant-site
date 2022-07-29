@@ -13,7 +13,7 @@
     <p>Know a restaurant not on the list?</p>
     <a href="/restaurants/new">ADD IT NOW</a>
     <% for (restaurant of allRestaurants) { %>
-        <h3><%= restaurant.name %></h3>
+        <a href="/restaurants/<%= restaurant._id %>"><h3><%= restaurant.name %></h3></a>
         <img src="<%= restaurant.img %>" alt="">
         <p><%= restaurant.dsc %></p>
         <p><%= restaurant.country %></p>
