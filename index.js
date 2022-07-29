@@ -31,6 +31,8 @@ const path = require('path');
 const ejs = require('ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// export Restaurants model
+const Restaurant = require('./models/restaurants.cjs');
 
 
 
@@ -52,13 +54,27 @@ app.get('/', (req, res) => {
 })
 
 // home route handler
-app.get('/home', (req, res) => {
-    res.render('main_routes/home.ejs');
+app.get('/home', async (req, res) => {
+    // idea: want to go into the database and just extract the entire array that contains the
+    // objects 
+    // should find all campgrounds
+    try {
+        let allRestaurants = await Restaurant.find({});
+        console.log(allRestaurants);
+        console.log("Home route sucessful, rendering page");
+        res.render('main_routes/home.ejs', { allRestaurants });
+    }
+    catch (err) {
+        console.log("error", err);
+    }
+    // pass it to ejs template
 })
 
+// CRUD FUNCTIONALITY FOR NEW RESTAURANTS?
+
 // menu route handler
-app.get("/menu", (req, res) => {
-    res.render('main_routes/menu.ejs');
+app.get("/restaurants", (req, res) => {
+    res.render('main_routes/restaurants.ejs');
 })
 
 // locations route handler

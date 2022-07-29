@@ -8,5 +8,13 @@
 </head>
 <body>
     <h1>Home page</h1>
+    <h2>all restaurants</h2>
+
+    <% for (restaurant of allRestaurants) { %>
+        <h3><%= restaurant.name %></h3>
+        <img src="<%= restaurant.img %>" alt="">
+        <p><%= restaurant.dsc %></p>
+        <p><%= restaurant.country %></p>
+    <% } %> 
 </body>
 </html>
