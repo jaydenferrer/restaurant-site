@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Restaurants Form</title>
+</head>
+<body>
+    <h1>New Restaurants Form</h1>
+    <h1>Add a new restaurant to the list</h1>
+     <!-- want the form to send a post request to /restaurants to actually update the database and webpage -->
+     <form action="/restaurants" method="post">
+
+        <!-- name attribute is how the data will be saved in JS object when submitted -->
+        <div>
+            <label for="name">Restaurant Name</label>
+            <input type="text" id="name" name="restaurant[name]">
+        </div>
+      
+        <div>
+            <label for="country">Restaurant Location</label>
+            <input type="text" id="country" name="restaurant[country]">
+        </div>
+     
+        <div>
+            <label for="dsc">Description</label>
+            <input type="text" id="dsc" name="restaurant[dsc]">
+        </div>
+        
+        <div>
+            <label for="rate">Rating</label>
+            <input type="number" id="rate" name="restaurant[rate]">
+        </div>
+        
+        <div>
+            <label for="img">Provide an Image</label>
+            <input type="text" id="img" name="restaurant[img]">
+        </div>
+
+        <button>Submit</button>
+        
+        <a href="/restaurants">VIEW ALL RESTAURANTS</a>
+
+    </form>
+</body>
+</body>
+</html>

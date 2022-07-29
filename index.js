@@ -45,7 +45,7 @@ const Restaurant = require('./models/restaurants.cjs');
 
 
 
-
+// NOTE NEED TO ADD ERROR HANDLING ETC.
 
 
 // creates get route handler for path '/'
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 })
 
 // home route handler
-app.get('/home', async (req, res) => {
+app.get('/restaurants', async (req, res) => {
     // idea: want to go into the database and just extract the entire array that contains the
     // objects 
     // should find all campgrounds
@@ -70,11 +70,14 @@ app.get('/home', async (req, res) => {
     // pass it to ejs template
 })
 
-// CRUD FUNCTIONALITY FOR NEW RESTAURANTS?
-
+// CRUD FUNCTIONALITY FOR NEW RESTAURANTS
 // menu route handler
-app.get("/restaurants", (req, res) => {
-    res.render('main_routes/restaurants.ejs');
+
+// new route: /comments/new
+// this is a route to simply render a new form 
+app.get('/restaurants/new', (req, res) => {
+    // nothing to search for 
+    res.render('restaurant_crud/new.ejs');
 })
 
 // locations route handler
