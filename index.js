@@ -31,6 +31,8 @@ const path = require('path');
 const ejs = require('ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// to parse request body from form submission data
+app.use(express.urlencoded({extended: true}));
 // export Restaurants model
 const Restaurant = require('./models/restaurants.cjs');
 
@@ -78,6 +80,19 @@ app.get('/restaurants', async (req, res) => {
 app.get('/restaurants/new', (req, res) => {
     // nothing to search for 
     res.render('restaurant_crud/new.ejs');
+})
+
+// create route: /comments (post)
+// route takes submitted form and creates new restaurants object and adds it to the db
+app.post('/restaurants', async (req, res) => {
+    console.log(req.body);
+    // destructure the request body, or just pass it as a new item we want to add 
+    const newRestaurant = new Restaurant(req.body.restaurant);
+    console.log(newRestaurant);
+    // pass new restaruant in
+    const result = await newRestaurant.save();
+    console.log(result);
+    res.redirect('/restaurants')
 })
 
 // locations route handler
