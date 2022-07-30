@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 // export Restaurants model
 const Restaurant = require('./models/restaurants.cjs');
-const { findById } = require('./models/restaurants.cjs');
+const { findById, update } = require('./models/restaurants.cjs');
 
 // export method-override
 // used to send other HTTP verbs in forms 
@@ -89,14 +89,14 @@ app.get('/restaurants/new', (req, res) => {
 // create route: /comments (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
 app.post('/restaurants', async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     // destructure the request body, or just pass it as a new item we want to add 
     const newRestaurant = new Restaurant(req.body.restaurant);
-    console.log(newRestaurant);
+    // console.log(newRestaurant);
     // pass new restaruant in
     const result = await newRestaurant.save();
-    console.log(result);
-    res.redirect('/restaurants')
+    // console.log(result);
+    res.redirect(`/restaurants/${newRestaurant._id}`)
 })
 
 
@@ -118,16 +118,32 @@ app.get('/restaurants/:id/edit', async (req, res) => {
 })
 
 app.patch('/restaurants/:id', async (req, res) => {
-    console.log("PATCH REQUEST");
+    // console.log("PATCH REQUEST");
     const updatedRestaurant = req.body.restaurant;
-    console.log(updatedRestaurant);
+    // console.log(updatedRestaurant);
     const id = req.params.id 
-    // FINISHED OFF RIGHT HERE
     // spread the contents of updatedRestaurant in the current Restaurant model with the given id 
-    await Restaurant.findByIdAndUpdate(id, {...updatedRestaurant})
-    // HAVE TO CREATE A NEW MODEL OR JUST UPDAT THE CURRENT MODEL WITH NEW INFORMATION THAT WAS SENT FORM THIS FORM IN REQ.BODY
+    // replacing the current model's we find properties with the new ones
+    // hence, here we could just  spread updatedRestaurant (...updatedRestaurant)
+    await Restaurant.findByIdAndUpdate(id, { 
+        name: updatedRestaurant.name,
+        country: updatedRestaurant.country,
+        img : updatedRestaurant.img,
+        rate: updatedRestaurant.rate,
+        dsc: updatedRestaurant.dsc
+    })
     res.redirect(`/restaurants/${id}`);
 })
+
+// delete route 
+app.delete('/restaurants/:id', async (req, res) => {
+    const id = req.params.id;
+    await Restaurant.findByIdAndDelete(id);
+    res.redirect('/restaurants')
+})
+
+// END OF RESTAURANT CRUD 
+
 // locations route handler
 app.get('/locations', (req, res) => {
     res.render('main_routes/location.ejs');

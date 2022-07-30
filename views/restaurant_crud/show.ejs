@@ -14,5 +14,9 @@
     <p><%= foundRestaurant.country %></p>
     <a href="/restaurants/<%= foundRestaurant._id %>/edit">EDIT</a>
     <a href="/restaurants">VIEW ALL RESTAURANTS</a>
+    <form action="/restaurants/<%= foundRestaurant._id %>?_method=DELETE" method="post">
+        <button>DELETE</button>
+    </form>
+    
 </body>
 </html>
