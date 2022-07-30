@@ -37,7 +37,10 @@ app.use(express.urlencoded({extended: true}));
 const Restaurant = require('./models/restaurants.cjs');
 const { findById } = require('./models/restaurants.cjs');
 
-
+// export method-override
+// used to send other HTTP verbs in forms 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 
 
@@ -63,8 +66,8 @@ app.get('/restaurants', async (req, res) => {
     // should find all campgrounds
     try {
         let allRestaurants = await Restaurant.find({});
-        console.log(allRestaurants);
-        console.log("Home route sucessful, rendering page");
+        // console.log(allRestaurants);
+        // console.log("Home route sucessful, rendering page");
         res.render('main_routes/home.ejs', { allRestaurants });
     }
     catch (err) {
@@ -106,7 +109,25 @@ app.get('/restaurants/:id', async (req, res) => {
 
 })
 
+// edit route: /restaurants/:id/edit
+// render form 
+app.get('/restaurants/:id/edit', async (req, res) => {
+    const id = req.params.id;
+    const foundRestaurant = await Restaurant.findById(id);
+    res.render('restaurant_crud/edit.ejs', { foundRestaurant })
+})
 
+app.patch('/restaurants/:id', async (req, res) => {
+    console.log("PATCH REQUEST");
+    const updatedRestaurant = req.body.restaurant;
+    console.log(updatedRestaurant);
+    const id = req.params.id 
+    // FINISHED OFF RIGHT HERE
+    // spread the contents of updatedRestaurant in the current Restaurant model with the given id 
+    await Restaurant.findByIdAndUpdate(id, {...updatedRestaurant})
+    // HAVE TO CREATE A NEW MODEL OR JUST UPDAT THE CURRENT MODEL WITH NEW INFORMATION THAT WAS SENT FORM THIS FORM IN REQ.BODY
+    res.redirect(`/restaurants/${id}`);
+})
 // locations route handler
 app.get('/locations', (req, res) => {
     res.render('main_routes/location.ejs');
