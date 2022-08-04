@@ -46,7 +46,8 @@ app.use(methodOverride('_method'));
 
 app.use(express.static(__dirname + '/public'));
 
-
+// export AppError class
+const AppError = require('./utils/ExpressError');
 
 
 
@@ -151,6 +152,7 @@ app.delete('/restaurants/:id', async (req, res) => {
 // locations route handler
 app.get('/locations', (req, res) => {
     res.render('main_routes/location.ejs');
+    // throw new AppError('testing error', 404);
 })
 
 // reservations route handler
