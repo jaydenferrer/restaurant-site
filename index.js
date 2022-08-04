@@ -106,11 +106,27 @@ app.post('/restaurants', async (req, res) => {
 
 
 // individual show route: /restaurants/:id
-app.get('/restaurants/:id', async (req, res) => {
+app.get('/restaurants/:id', async (req, res, next) => {
     // need to search for restaurant given the id
-    const id = req.params.id;
-    const foundRestaurant = await Restaurant.findById(id);
-    res.render('restaurant_crud/show.ejs', { foundRestaurant })
+    try {
+        const id = req.params.id;
+        const foundRestaurant = await Restaurant.findById(id);
+        if (!foundRestaurant) {
+            throw new AppError("Could not find a restaurant with that ID", 404);
+        }
+        else {
+            console.log("no error");
+            res.render('restaurant_crud/show.ejs', { foundRestaurant })
+        }
+        
+
+    }
+    catch (err) {
+        console.log(err);
+        // in async functions, need to pass next the err object to run our error middleware 
+        next(err);
+    }
+    
 
 })
 
@@ -164,6 +180,32 @@ app.get('/reservations', (req, res) => {
 app.get('/order', (req, res) => {
     res.render('main_routes/order.ejs');
 })
+
+// will apply to ALL requests ONLY at the end, hence if any routes we search up fail,
+// then this route will execute, and all we want is to render an error form 
+app.all('*', (req, res, next) => {
+    console.log("Reached END of ROUTES")
+    const newError = new AppError("Page Not Found", 404);
+    
+    // call middleware
+    next(newError);
+})  
+
+
+
+// error middleware 
+app.use((err, req, res, next) => {
+    console.log("***********");
+    console.log("***ERROR***");
+    console.log("***********");
+    console.log("USING ERROR MIDDLEWARE WE DEFINED");
+    // console.log(err);
+    // set defaults because some errors many not have defined values
+    const {message = "An Error Has Occured!", statusCode = 400} = err;
+    console.log(message, statusCode);
+    res.send(`${message}`).status(statusCode);
+})
+
 
 // creating a handler that listens for connections on the specified host and port 
 // in our example, listening for connections to localhost, port 3000 (localhost:3000)
