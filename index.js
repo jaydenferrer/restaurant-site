@@ -42,6 +42,8 @@ const { findById, update } = require('./models/restaurants.cjs');
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
+app.use(express.static(__dirname + '/public'));
+
 
 
 
