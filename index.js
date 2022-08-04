@@ -29,6 +29,8 @@ const path = require('path');
 // set up ejs 
 // app.set('view engine', 'ejs');
 const ejs = require('ejs');
+const ejsMateEngine = require('ejs-mate')
+app.engine('ejs', ejsMateEngine);
 app.set('views', path.join(__dirname, 'views'));
 
 // to parse request body from form submission data
