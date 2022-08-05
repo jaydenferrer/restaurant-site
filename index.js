@@ -51,100 +51,17 @@ const AppError = require('./utils/ExpressError');
 const wrapAsync = require('./utils/wrapAsync');
 
 
-
-
-
-
+// ROUTES
+const restaurantRoutes = require('./routes/restaurant');
 
 // NOTE NEED TO ADD ERROR HANDLING ETC.
-
-
 // creates get route handler for path '/'
 app.get('/', (req, res) => {
     res.send("Home page");
 })
 
-// home route handler
-app.get('/restaurants', wrapAsync(async (req, res) => {
-    // idea: want to go into the database and just extract the entire array that contains the
-    // objects 
-    let allRestaurants = await Restaurant.find({});
-    // console.log(allRestaurants);
-    // console.log("Home route sucessful, rendering page");
-    res.render('main_routes/home.ejs', { allRestaurants });
-    
-}));
-
-// CRUD FUNCTIONALITY FOR NEW RESTAURANTS
-// menu route handler
-
-// new route: /comments/new
-// this is a route to simply render a new form 
-app.get('/restaurants/new', (req, res) => {
-    // nothing to search for 
-    res.render('restaurant_crud/new.ejs');
-})
-
-// create route: /comments (post)
-// route takes submitted form and creates new restaurants object and adds it to the db
-app.post('/restaurants', wrapAsync(async (req, res) => {
-
-    // destructure the request body, or just pass it as a new item we want to add 
-    const newRestaurant = new Restaurant(req.body.restaurant);
-    // pass new restaruant in
-    const result = await newRestaurant.save();
-    res.redirect(`/restaurants/${newRestaurant._id}`)
-}));
-
-
-// individual show route: /restaurants/:id
-app.get('/restaurants/:id', wrapAsync(async (req, res, next) => {
-    // need to search for restaurant given the id
-    const id = req.params.id;
-    const foundRestaurant = await Restaurant.findById(id);
-    if (!foundRestaurant) {
-        // since we have wrapAsync, we can throw our own errors which will get caught 
-        throw new AppError("Could not find a restaurant with that ID", 404);
-    }
-    else {
-        res.render('restaurant_crud/show.ejs', { foundRestaurant })
-    }
-}));
-
-// edit route: /restaurants/:id/edit
-// render form 
-app.get('/restaurants/:id/edit', wrapAsync(async (req, res) => {
-    const id = req.params.id;
-    const foundRestaurant = await Restaurant.findById(id);
-    res.render('restaurant_crud/edit.ejs', { foundRestaurant })
-}));
-
-app.patch('/restaurants/:id', wrapAsync(async (req, res) => {
-    // console.log("PATCH REQUEST");
-    const updatedRestaurant = req.body.restaurant;
-    // console.log(updatedRestaurant);
-    const id = req.params.id 
-    // spread the contents of updatedRestaurant in the current Restaurant model with the given id 
-    // replacing the current model's we find properties with the new ones
-    // hence, here we could just  spread updatedRestaurant (...updatedRestaurant)
-    await Restaurant.findByIdAndUpdate(id, { 
-        name: updatedRestaurant.name,
-        country: updatedRestaurant.country,
-        img : updatedRestaurant.img,
-        rate: updatedRestaurant.rate,
-        dsc: updatedRestaurant.dsc
-    })
-    res.redirect(`/restaurants/${id}`);
-}));
-
-// delete route 
-app.delete('/restaurants/:id', wrapAsync(async (req, res) => {
-    const id = req.params.id;
-    await Restaurant.findByIdAndDelete(id);
-    res.redirect('/restaurants')
-}));
-
-// END OF RESTAURANT CRUD 
+// adds prefix /restaurant to routes in restaurantRoutes
+app.use('/restaurants', restaurantRoutes);
 
 // locations route handler
 app.get('/locations', (req, res) => {
