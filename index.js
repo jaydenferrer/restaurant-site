@@ -53,6 +53,9 @@ const wrapAsync = require('./utils/wrapAsync');
 
 // ROUTES
 const restaurantRoutes = require('./routes/restaurant');
+const locationsRoutes = require('./routes/locations');
+const reservationsRoutes = require('./routes/reservations');
+const orderRoutes = require('./routes/orders')
 
 // NOTE NEED TO ADD ERROR HANDLING ETC.
 // creates get route handler for path '/'
@@ -63,21 +66,14 @@ app.get('/', (req, res) => {
 // adds prefix /restaurant to routes in restaurantRoutes
 app.use('/restaurants', restaurantRoutes);
 
-// locations route handler
-app.get('/locations', (req, res) => {
-    res.render('main_routes/location.ejs');
-    // throw new AppError('testing error', 404);
-})
+app.use('/locations', locationsRoutes);
 
-// reservations route handler
-app.get('/reservations', (req, res) => {
-    res.render('main_routes/reservations.ejs');
-})
+app.use('/reservations', reservationsRoutes);
+
+app.use('/order', orderRoutes);
 
 // order now route handler
-app.get('/order', (req, res) => {
-    res.render('main_routes/order.ejs');
-})
+
 
 // will apply to ALL requests ONLY at the end, hence if any routes we search up fail,
 // then this route will execute, and all we want is to render an error form 
