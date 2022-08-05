@@ -65,21 +65,15 @@ app.get('/', (req, res) => {
 })
 
 // home route handler
-app.get('/restaurants', async (req, res) => {
+app.get('/restaurants', wrapAsync(async (req, res) => {
     // idea: want to go into the database and just extract the entire array that contains the
     // objects 
-    // should find all campgrounds
-    try {
-        let allRestaurants = await Restaurant.find({});
-        // console.log(allRestaurants);
-        // console.log("Home route sucessful, rendering page");
-        res.render('main_routes/home.ejs', { allRestaurants });
-    }
-    catch (err) {
-        console.log("error", err);
-    }
-    // pass it to ejs template
-})
+    let allRestaurants = await Restaurant.find({});
+    // console.log(allRestaurants);
+    // console.log("Home route sucessful, rendering page");
+    res.render('main_routes/home.ejs', { allRestaurants });
+    
+}));
 
 // CRUD FUNCTIONALITY FOR NEW RESTAURANTS
 // menu route handler
@@ -93,52 +87,39 @@ app.get('/restaurants/new', (req, res) => {
 
 // create route: /comments (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
-app.post('/restaurants', async (req, res) => {
-    // console.log(req.body);
+app.post('/restaurants', wrapAsync(async (req, res) => {
+
     // destructure the request body, or just pass it as a new item we want to add 
     const newRestaurant = new Restaurant(req.body.restaurant);
-    // console.log(newRestaurant);
     // pass new restaruant in
     const result = await newRestaurant.save();
-    // console.log(result);
     res.redirect(`/restaurants/${newRestaurant._id}`)
-})
+}));
 
 
 // individual show route: /restaurants/:id
-app.get('/restaurants/:id', async (req, res, next) => {
+app.get('/restaurants/:id', wrapAsync(async (req, res, next) => {
     // need to search for restaurant given the id
-    try {
-        const id = req.params.id;
-        const foundRestaurant = await Restaurant.findById(id);
-        if (!foundRestaurant) {
-            throw new AppError("Could not find a restaurant with that ID", 404);
-        }
-        else {
-            console.log("no error");
-            res.render('restaurant_crud/show.ejs', { foundRestaurant })
-        }
-        
-
+    const id = req.params.id;
+    const foundRestaurant = await Restaurant.findById(id);
+    if (!foundRestaurant) {
+        // since we have wrapAsync, we can throw our own errors which will get caught 
+        throw new AppError("Could not find a restaurant with that ID", 404);
     }
-    catch (err) {
-        console.log(err);
-        // in async functions, need to pass next the err object to run our error middleware 
-        next(err);
+    else {
+        res.render('restaurant_crud/show.ejs', { foundRestaurant })
     }
-    
-
-})
+}));
 
 // edit route: /restaurants/:id/edit
 // render form 
-app.get('/restaurants/:id/edit', async (req, res) => {
+app.get('/restaurants/:id/edit', wrapAsync(async (req, res) => {
     const id = req.params.id;
     const foundRestaurant = await Restaurant.findById(id);
     res.render('restaurant_crud/edit.ejs', { foundRestaurant })
-})
+}));
 
-app.patch('/restaurants/:id', async (req, res) => {
+app.patch('/restaurants/:id', wrapAsync(async (req, res) => {
     // console.log("PATCH REQUEST");
     const updatedRestaurant = req.body.restaurant;
     // console.log(updatedRestaurant);
@@ -154,14 +135,14 @@ app.patch('/restaurants/:id', async (req, res) => {
         dsc: updatedRestaurant.dsc
     })
     res.redirect(`/restaurants/${id}`);
-})
+}));
 
 // delete route 
-app.delete('/restaurants/:id', async (req, res) => {
+app.delete('/restaurants/:id', wrapAsync(async (req, res) => {
     const id = req.params.id;
     await Restaurant.findByIdAndDelete(id);
     res.redirect('/restaurants')
-})
+}));
 
 // END OF RESTAURANT CRUD 
 
@@ -183,26 +164,26 @@ app.get('/order', (req, res) => {
 
 // will apply to ALL requests ONLY at the end, hence if any routes we search up fail,
 // then this route will execute, and all we want is to render an error form 
+// NOTE: actually i think this route executes always no matter what,
+// however if no errors occur in our routes, then we will go to that given route 
+// rather than go to the page defined in our middleware
 app.all('*', (req, res, next) => {
-    console.log("Reached END of ROUTES")
-    const newError = new AppError("Page Not Found", 404);
+    // console.log("Reached END of ROUTES")
+    // const newError = 
     
     // call middleware
-    next(newError);
+    next(new AppError("Page Not Found", 404));
 })  
 
 
 
 // error middleware 
 app.use((err, req, res, next) => {
-    console.log("***********");
-    console.log("***ERROR***");
-    console.log("***********");
-    console.log("USING ERROR MIDDLEWARE WE DEFINED");
+    // console.log("USING ERROR MIDDLEWARE WE DEFINED");
     // console.log(err);
     // set defaults because some errors many not have defined values
     const {message = "An Error Has Occured!", statusCode = 400} = err;
-    console.log(message, statusCode);
+    // console.log(message, statusCode);
     res.send(`${message}`).status(statusCode);
 })
 

@@ -10,6 +10,7 @@ const wrapAsync = function (fn) {
             // calling on an async function, so that means that 
             // if an error occurs we pass it to next such that 
             // it can be handled by the middleware
+            console.log(err.message, err.statusCode);
             next(err);
         })
     }
