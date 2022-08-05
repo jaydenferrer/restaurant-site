@@ -48,7 +48,7 @@ app.use(express.static(__dirname + '/public'));
 
 // export AppError class
 const AppError = require('./utils/ExpressError');
-
+const wrapAsync = require('./utils/wrapAsync');
 
 
 
