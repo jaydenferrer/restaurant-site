@@ -3,6 +3,9 @@
     height: 50px;
     font-family: 'Space Mono', monospace;
     margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
 .main-nav-logo {
