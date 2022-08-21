@@ -1,6 +1,6 @@
 
     <%- layout('./layouts/boilerplate.ejs') %>
-
+    <link rel="stylesheet" href="/css/home.css">
     <title>Restaurants</title>
     
     <h1>Home page</h1>
@@ -8,9 +8,29 @@
 
     <p>Know a restaurant not on the list?</p>
     <a href="/restaurants/new">ADD IT NOW</a>
-    <% for (restaurant of allRestaurants) { %>
-        <a href="/restaurants/<%= restaurant._id %>"><h3><%= restaurant.name %></h3></a>
-        <img src="<%= restaurant.img %>" alt="">
-        <p><%= restaurant.dsc %></p>
-        <p><%= restaurant.country %></p>
-    <% } %> 
+
+    <!-- complete section -->
+    <div id="home-grid-sidebar">
+        <!-- div for the section on the left -->
+        <section id="side-bar">
+            <p>SIDE BAR</p>
+        </section>
+        <!-- div for the restaurant grid section -->
+        <section id="restaurant-grid">
+            <!-- iterating through each restaurant and giving it its own div  -->
+            <% for (restaurant of allRestaurants) { %>
+                <div class="restaurant-grid-element">
+                    
+                    <img src="<%= restaurant.img %>" alt="">
+                    <a href="/restaurants/<%= restaurant._id %>"><h3><%= restaurant.name %></h3></a>
+                    <p><%= restaurant.dsc %></p>
+                    <p><%= restaurant.country %></p>
+                </div> 
+            <% } %> 
+        </section>
+
+
+    </div>
+   
+   
+    

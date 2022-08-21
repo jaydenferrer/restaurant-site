@@ -1,0 +1,31 @@
+#home-grid-sidebar {
+    display: flex;
+    justify-content: center;
+}
+
+#side-bar {
+    display: flex;
+    width: 15%;
+    height: 100vh;
+}
+#restaurant-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 65%;
+}
+
+.restaurant-grid-element {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    text-align: center;
+}
+
+.restaurant-grid-element img {
+/* 
+    height: 150px; */
+}
+
+#restaurant-grid-element p {
+    color: green;
+}
