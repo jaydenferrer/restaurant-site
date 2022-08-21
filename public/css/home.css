@@ -7,6 +7,7 @@
     display: flex;
     width: 10%;
     height: 100vh;
+    flex-direction: column;
 }
 
 #restaurant-grid {
@@ -26,17 +27,43 @@
 
 .restaurant-grid-element img {
     height: 60%;
+    margin-bottom: 10px;
 }
 
 .restaurant-grid-element p {
-    flex-grow: 1;
+    height: 10%;
 }
 
 .restaurant-grid-element a {
-    flex-grow: 1;
+    height: 10%;
 }
 
 #home-header {
-    height: 20vh;
+    height: 25vh;
     text-align: center;
 }
+
+.restaurant-name {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    font-family: 'Space Mono', monospace;
+    font-weight: 800;
+}
+
+#category-side-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+#prices-side-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+#rating-side-bar {
+    display: flex;
+    flex-direction: column;
+}
+
