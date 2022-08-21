@@ -5,27 +5,38 @@
 
 #side-bar {
     display: flex;
-    width: 15%;
+    width: 10%;
     height: 100vh;
 }
+
 #restaurant-grid {
     display: flex;
     flex-wrap: wrap;
-    width: 65%;
+    width: 60%;
+    justify-content: center;
 }
 
 .restaurant-grid-element {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    text-align: center;
+    width: 20%;
+    /* text-align: center; */
+    margin: 5px;
 }
 
 .restaurant-grid-element img {
-/* 
-    height: 150px; */
+    height: 60%;
 }
 
-#restaurant-grid-element p {
-    color: green;
+.restaurant-grid-element p {
+    flex-grow: 1;
+}
+
+.restaurant-grid-element a {
+    flex-grow: 1;
+}
+
+#home-header {
+    height: 20vh;
+    text-align: center;
 }
