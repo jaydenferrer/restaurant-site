@@ -160,3 +160,29 @@ i {
 .rating-side-bar-link:hover {
     font-weight: bold;
 }
+
+.restaurant-new {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-family: 'Space Mono', monospace;
+}
+
+.restaurant-new p {
+    margin: 10px;
+}
+.restaurant-new a {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.restaurant-new a:hover {
+  
+    color: #bbb5b5;
+    
+}
