@@ -84,6 +84,7 @@
 
 #category-side-bar {
     margin-bottom: 30px;
+    height: 40%;
 }
 
 #prices-side-bar {
@@ -99,12 +100,23 @@
     font-weight: 700;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #decdcc;
 }
 
 .side-bar-link {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: black;
+    margin: 2px;
+    width: 90%;
+    height: 100%;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.side-bar-link:hover {
+    background-color: #f1f1f1;
 }
 
 .side-bar-input {
@@ -118,4 +130,8 @@ i {
 
 .rating-side-bar-stars {
     display: flex;
+}
+
+.fa-star {
+    color: gold;
 }
