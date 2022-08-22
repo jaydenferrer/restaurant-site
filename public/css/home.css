@@ -135,3 +135,20 @@ i {
 .fa-star {
     color: gold;
 }
+
+.side-bar-input {
+    margin: 8px;
+}
+
+.rating-side-bar-stars {
+    margin: 8px;
+}
+
+.rating-side-bar-link {
+    text-decoration: none;
+    color: black;
+}
+
+.rating-side-bar-link:hover {
+    font-weight: bold;
+}
