@@ -98,6 +98,8 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
 }
 
 .side-bar-link {
@@ -108,4 +110,12 @@
 .side-bar-input {
     display: flex;
     justify-content: space-between;
+}
+
+i {
+    display: inline;
+}
+
+.rating-side-bar-stars {
+    display: flex;
 }
