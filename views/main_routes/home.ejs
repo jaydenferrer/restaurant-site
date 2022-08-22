@@ -15,29 +15,46 @@
     <div id="home-grid-sidebar">
         <!-- div for the section on the left -->
         <section id="side-bar">
-            <p>SIDE BAR</p>
             <div id="category-side-bar">
-                <h3>Categories</h3>
-                <a href="#">Burgers</a>
-                <a href="#">Pasta</a>
-                <a href="#">Sandwiches</a>
-                <a href="#">Pizza</a>
-                <a href="#">Drinks</a>
-                <a href="#">Asian</a>
+                <h3 class="side-bar-header">Categories</h3>
+                <a href="#" class="side-bar-link">Burgers</a>
+                <a href="#" class="side-bar-link">Pasta</a>
+                <a href="#" class="side-bar-link">Sandwiches</a>
+                <a href="#" class="side-bar-link">Pizza</a>
+                <a href="#" class="side-bar-link">Drinks</a>
+                <a href="#" class="side-bar-link">Asian</a>
             </div>
 
             <div id="prices-side-bar">
-                <h3>Prices</h3>
-                <a href="#">Burgers</a>
-                <a href="#">Pasta</a>
-                <a href="#">Sandwiches</a>
-                <a href="#">Pizza</a>
-                <a href="#">Drinks</a>
-                <a href="#">Asian</a>
+                <h3 class="side-bar-header">Prices</h3>
+                
+                <div class="side-bar-input">
+                    <label for="option-one">Under $50</label>
+                    <input type="radio" name="price" value="" id="option-one" class="side-bar-radio">
+                </div>
+                
+                <div class="side-bar-input">
+                    <label for="option-two">Under $100</label>
+                    <input type="radio" name="price" value="" id="option-two" class="side-bar-radio">
+                </div>
+
+                <div class="side-bar-input">
+                    <label for="option-three">$50 to $100</label>
+                    <input type="radio" name="price" value="" id="option-three" class="side-bar-radio">
+                </div>
+                
+
+                <div class="side-bar-input">
+                    <label for="option-four">Over $100</label>
+                    <input type="radio" name="price" value="" id="option-four" class="side-bar-radio">
+                </div>
+                
+
+
             </div>
 
             <div id="rating-side-bar">
-                <h3>Ratings</h3>
+                <h3 class="side-bar-header">Ratings</h3>
                 <a href="#">Burgers</a>
                 <a href="#">Pasta</a>
                 <a href="#">Sandwiches</a>
@@ -56,8 +73,8 @@
                     
                     <img src="<%= restaurant.img %>" alt="">
                     <a href="/restaurants/<%= restaurant._id %>" class="restaurant-name"><h3><%= restaurant.name %></h3></a>
-                    <p><%= restaurant.dsc %></p>
-                    <p><%= restaurant.country %></p>
+                    <p class="restaurant-dsc"><%= restaurant.dsc %></p>
+                    <p class="restaurant-country"><i class="fa-solid fa-location-dot"></i>  <%= restaurant.country %></p>
                 </div> 
             <% } %> 
         </section>

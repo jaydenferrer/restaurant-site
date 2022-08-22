@@ -1,6 +1,7 @@
 #home-grid-sidebar {
     display: flex;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #side-bar {
@@ -30,9 +31,9 @@
     margin-bottom: 10px;
 }
 
-.restaurant-grid-element p {
-    height: 10%;
-}
+/* .restaurant-grid-element p {
+    height: 8%;
+} */
 
 .restaurant-grid-element a {
     height: 10%;
@@ -52,6 +53,16 @@
     font-weight: 800;
 }
 
+.restaurant-dsc {
+    height: 10%;
+    font-size: 0.9rem;
+}
+
+.restaurant-country {
+    height: 5%;
+    font-size: 0.8rem
+}
+
 #category-side-bar {
     display: flex;
     flex-direction: column;
@@ -67,3 +78,34 @@
     flex-direction: column;
 }
 
+#side-bar {
+    font-family: 'Space Mono', monospace;
+}
+
+#category-side-bar {
+    margin-bottom: 30px;
+}
+
+#prices-side-bar {
+    margin-bottom: 30px;
+}
+
+#rating-side-bar {
+    margin-bottom: 30px;
+}
+
+.side-bar-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.side-bar-link {
+    text-decoration: none;
+    color: black;
+}
+
+.side-bar-input {
+    display: flex;
+    justify-content: space-between;
+}
