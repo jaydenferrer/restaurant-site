@@ -1,3 +1,7 @@
+// IMPORTANT AND CONFIGURE DOTENV 
+require('dotenv').config();
+
+
 // export the express module 
 const express = require('express');
 const app = express();
