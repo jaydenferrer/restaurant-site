@@ -193,31 +193,32 @@ i {
 }
 
 .tag-heart {
-    /* position: absolute; */
-    left: 10px;
-    top: 10px;
+    position: absolute;
+    left: 82%;
+    top: 14%;
 }
 
 .tag-shop {
-    /* position: absolute; */
+    position: absolute;
    
-    left: 10px;
-    top: 35px;
+    left: 82%;
+    top: 3%;
 }
 
-.tag-shape {
-    border: solid 10px black;
+.fa-heart, .fa-cart-shopping {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px;
     border-radius: 50%;
+    color: white;
+
 }
 
-
-
-.tag-shape:hover {
-    border-color: white;
+.fa-heart:hover {
+    color: red;
 }
 
-.restaurant-grid-element img {
-    position: static;
+.fa-cart-shopping:hover {
+    color: gold;
 }
 
 .display {

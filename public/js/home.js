@@ -10,6 +10,7 @@ for (let i = 0 ; i < allRestaurants.length ; i++) {
         // i (index) is the element that triggered the 
         // call function that causes the ith element to have the tags displayed
         console.log(i);
+        allRestaurants[i].style.cursor = "pointer";
         toggleTags(i);
     })
 

@@ -128,10 +128,10 @@
             <!-- iterating through each restaurant and giving it its own div  -->
             <% for (restaurant of allRestaurants) { %>
                 <div class="restaurant-grid-element container">
-                    <div class="tag-heart tag-shape display"></div>
-                    <div class="tag-shop tag-shape"></div>
+                    <div class="tag-heart tag-shape hidden"><i class="fa-regular fa-heart"></i></div>
+                    <div class="tag-shop tag-shape hidden"><i class="fa-solid fa-cart-shopping"></i></div>
                     <div></div>
-                    <img src="<%= restaurant.img %>" alt="">
+                    <img src="<%= restaurant.img %>" alt="" >
                     <a href="/restaurants/<%= restaurant._id %>" class="restaurant-name"><h3><%= restaurant.name %></h3></a>
                     <p class="restaurant-dsc"><%= restaurant.dsc %></p>
                     <p class="restaurant-country"><i class="fa-solid fa-location-dot"></i>  <%= restaurant.country %></p>
