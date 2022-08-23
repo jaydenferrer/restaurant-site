@@ -169,6 +169,7 @@ i {
     background-color: black;
     color: white;
     font-family: 'Space Mono', monospace;
+    margin-top: 50px;
 }
 
 .restaurant-new p {
@@ -185,4 +186,44 @@ i {
   
     color: #bbb5b5;
     
+}
+
+.container {
+    position: relative;
+}
+
+.tag-heart {
+    /* position: absolute; */
+    left: 10px;
+    top: 10px;
+}
+
+.tag-shop {
+    /* position: absolute; */
+   
+    left: 10px;
+    top: 35px;
+}
+
+.tag-shape {
+    border: solid 10px black;
+    border-radius: 50%;
+}
+
+
+
+.tag-shape:hover {
+    border-color: white;
+}
+
+.restaurant-grid-element img {
+    position: static;
+}
+
+.display {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
 }
