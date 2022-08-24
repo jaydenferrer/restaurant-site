@@ -16,9 +16,14 @@
 
     <div class="main-nav-auth">
         <ul>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <!-- if a current user is present, then we want to only show logout -->
+            <% if (currentUser) { %> 
+                <li><a href="/logout">Logout</a></li>
+            <!-- if there is no current user, then want to show login or register -->
+            <% } else { %>        
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } %>       
         </ul>
     </div>
 </nav>
