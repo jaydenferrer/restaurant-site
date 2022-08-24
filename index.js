@@ -60,6 +60,9 @@ const restaurantRoutes = require('./routes/restaurant');
 const locationsRoutes = require('./routes/locations');
 const reservationsRoutes = require('./routes/reservations');
 const orderRoutes = require('./routes/orders')
+const userRoutes = require('./routes/users')
+
+
 
 // NOTE NEED TO ADD ERROR HANDLING ETC.
 // creates get route handler for path '/'
@@ -76,6 +79,7 @@ app.use('/reservations', reservationsRoutes);
 
 app.use('/order', orderRoutes);
 
+app.use('/', userRoutes);
 // order now route handler
 
 
