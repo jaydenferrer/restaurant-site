@@ -2,14 +2,20 @@
 
 
 <!-- form that renders a login -->
-<!-- want to send the data to the route /login as a post request -->
-<form action="/login" method="post">
+<h1>Register</h1>
+<!-- send the form data to route /register as a post request -->
+<form action="/register" method="post">
 
     <div class="username-container">
         <label for="username">Username: </label>
         <input type="text" id="username" name="username">
     </div>
-   
+    
+    <div class="email-container">
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email">
+    </div>
+
     <div class="password-container">
         <label for="password">Password: </label>
         <input type="password" id="password" name="password">
