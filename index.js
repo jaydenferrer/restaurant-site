@@ -90,7 +90,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
+// can define middleware that is available IN ALL TEMPLATES
+app.use((req, res, next) => {
+    // all properties we define in res.locals will be available in ALL EJS templates we render with res.render!
+    res.locals.currentUser = req.user;
+    next();
+})
 
 // ROUTES
 const restaurantRoutes = require('./routes/restaurant');
