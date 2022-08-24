@@ -11,7 +11,7 @@
 
 .main-nav-logo {
     display: flex;
-    width: 50%;
+    width: 30%;
     justify-content: flex-start;
     align-items: center;
     margin-left: 15px;
@@ -24,7 +24,7 @@
    
 }
 
-.main-nav-links ul {
+.main-nav-links ul, .main-nav-auth ul {
    
     width: 100%;
     display: flex;
@@ -32,9 +32,19 @@
     align-items: center;
 }
 
+.main-nav-auth {
+    display: flex;
+    width: 20%;
+    /* justify-content: flex-end; */
+}
+
+.main-nav-auth ul {
+    display: flex;
+    justify-content: flex-end;
+}
 
 
-.main-nav-links ul li {
+.main-nav-links ul li, .main-nav-auth ul li {
     display: flex;
     flex-grow: 1;
     text-align: center;
@@ -43,7 +53,7 @@
     align-items: center;
 }
 
-.main-nav-links ul li a {
+.main-nav-links ul li a, .main-nav-auth ul li a {
 
     text-decoration: none;
     color: white;
