@@ -55,6 +55,43 @@ const AppError = require('./utils/ExpressError');
 const wrapAsync = require('./utils/wrapAsync');
 
 
+
+// require express session to allow sessions to be created 
+const session = require('express-session');
+// middleware that uses the session and also configures it
+// can now access session in the request object, req.session
+// loads session data and makes it available at req.session 
+
+app.use(session({
+    //
+    secret: "thisisasecretcode",
+    resave: false,
+    saveUninitialized: false,
+}))
+
+// requiring the passport tool
+const passport = require('passport');
+// requiring the passport local strategy (used to authenticate using only a username and password)
+const LocalStrategy = require('passport-local');
+
+// middleware to set up passport 
+// initializes passport
+app.use(passport.initialize());
+// authenticate request based on session data
+// if session data contains a logged in user, the data will be available in req.user
+app.use(passport.session());
+
+
+// passport authentication (for passport-local-mongoose)
+const User = require('./models/users')
+passport.use(new LocalStrategy(User.authenticate()));
+
+// passport serialization and deserialization (for passport-local-mongoose)
+app.use(User.serializeUser());
+app.use(User.deserializeUser());
+
+
+
 // ROUTES
 const restaurantRoutes = require('./routes/restaurant');
 const locationsRoutes = require('./routes/locations');
