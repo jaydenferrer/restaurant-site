@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Restaurant = require('../models/restaurants.cjs');
 const wrapAsync = require('../utils/wrapAsync');
+const { isLoggedIn } = require('../middleware/auth.js');
 
 // home route handler
 router.get('/', wrapAsync(async (req, res) => {
@@ -17,7 +18,7 @@ router.get('/', wrapAsync(async (req, res) => {
 
 // new route: /comments/new
 // this is a route to simply render a new form 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     // nothing to search for 
     res.render('restaurant_crud/new.ejs');
 })
