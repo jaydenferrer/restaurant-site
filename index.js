@@ -87,8 +87,8 @@ const User = require('./models/users')
 passport.use(new LocalStrategy(User.authenticate()));
 
 // passport serialization and deserialization (for passport-local-mongoose)
-app.use(User.serializeUser());
-app.use(User.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
