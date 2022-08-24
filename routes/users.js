@@ -1,21 +1,9 @@
 // contains route handlers for authentication
 const User = require('../models/users')
 const express = require('express');
+const passport = require('passport')
 
 const router = express.Router();
-
-// to login in, create two routes
-// 1. simply renders a login form
-// 2. will take username and password and authenticate and create session
-router.get('/login', (req, res) => {
-    res.render('auth_routes/login.ejs')
-}) 
-
-// route will post the data to db
-// authenticate the user with their username and password, connect them with a session
-router.post('/login', (req, res) => {
-
-})
 
 // to register, create two routes
 // 1. simply renders a register form,
@@ -55,8 +43,41 @@ router.post('/register', async (req, res) => {
     });
 })
 
+
+// to login in, create two routes
+// 1. simply renders a login form
+// 2. will take username and password and authenticate and create session
+router.get('/login', (req, res) => {
+    res.render('auth_routes/login.ejs')
+}) 
+
+// route will post the data to db
+// authenticate the user with their username and password, connect them with a session
+router.post('/login', 
+    // built in middleware in passport, automatically invokes req.login, authenticating the user and loggin them in
+    passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }), 
+    (req, res) => {
+    // given the username and password, we can use the function passport.authenticate, call this as middleware, 
+    // once we gain access to this scope, we just want to redirect the user to restaurants 
+    // user has been sucessfully authenticated, redirect them to the page
+    console.log("USER LOGGED IN: ", req.user);
+    res.redirect('/restaurants');
+})
+
+
 router.get('/logout', (req, res) => {
-    res.send("LOGOUT PAGE")
+    // use the method req.logout
+    // want to terminate login session and remove user data from req.user
+    req.logout((err) => {
+        // if error, call error handler
+        if (err) { return next(err) }
+        else {
+            // should be blank/empty/null if the user is successfully logged out b/c we remove user from req.user
+            console.log("LOGGED OUT USER: ", req.user);
+            return res.redirect('/restaurants');
+        }
+    })
+    // res.send("LOGOUT PAGE")
 })
 
 
