@@ -25,7 +25,8 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 // create route: /comments (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
-router.post('/', wrapAsync(async (req, res) => {
+// also want middleware here b/c someone could send a post request using an external source, so still want to protect it 
+router.post('/', isLoggedIn, wrapAsync(async (req, res) => {
 
     // destructure the request body, or just pass it as a new item we want to add 
     const newRestaurant = new Restaurant(req.body.restaurant);
@@ -51,13 +52,13 @@ router.get('/:id', wrapAsync(async (req, res, next) => {
 
 // edit route: /restaurants/:id/edit
 // render form 
-router.get('/:id/edit', wrapAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, wrapAsync(async (req, res) => {
     const id = req.params.id;
     const foundRestaurant = await Restaurant.findById(id);
     res.render('restaurant_crud/edit.ejs', { foundRestaurant })
 }));
 
-router.patch('/:id', wrapAsync(async (req, res) => {
+router.patch('/:id', isLoggedIn, wrapAsync(async (req, res) => {
     // console.log("PATCH REQUEST");
     const updatedRestaurant = req.body.restaurant;
     // console.log(updatedRestaurant);
@@ -76,7 +77,7 @@ router.patch('/:id', wrapAsync(async (req, res) => {
 }));
 
 // delete route 
-router.delete('/:id', wrapAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, wrapAsync(async (req, res) => {
     const id = req.params.id;
     await Restaurant.findByIdAndDelete(id);
     res.redirect('/restaurants')
