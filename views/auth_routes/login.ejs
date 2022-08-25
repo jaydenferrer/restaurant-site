@@ -12,11 +12,13 @@
         </div>
         
         <div id="login-form">
-            <form action="/login" method="post">
+            <form action="/login" method="post" class="actual-form">
         
-        
-                <p>JOIN WITH US</p>
-                <p>Don't have an account? <span>Create an account</span></p>
+                <div class="join-container">
+                    <p>JOIN WITH US</p>
+                    <p>Don't have an account? <a href="/register">Create an account</a></p>
+                </div>
+                
                 <div class="username-container">
                     <label for="username">Username </label>
                     <input type="text" id="username" name="username">
@@ -33,7 +35,7 @@
             
                 </div>
             
-                <button>LOG IN</button>
+                <button class="login-button">LOG IN</button>
             
             
             
