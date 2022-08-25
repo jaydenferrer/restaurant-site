@@ -3,20 +3,44 @@
 
 <!-- form that renders a login -->
 <!-- want to send the data to the route /login as a post request -->
-<form action="/login" method="post">
+<link rel="stylesheet" href="/css/login.css">
+<div id="login-page">
+    <div id="login-banner">
+        <div id="login-image">
+            <p>hiwad</p>
 
-    <div class="username-container">
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username">
+        </div>
+        
+        <div id="login-form">
+            <form action="/login" method="post">
+        
+        
+                <p>JOIN WITH US</p>
+                <p>Don't have an account? <span>Create an account</span></p>
+                <div class="username-container">
+                    <label for="username">Username </label>
+                    <input type="text" id="username" name="username">
+                </div>
+               
+                <div class="password-container">
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password">
+                </div>
+                
+                <div class="save-password-container">
+                    <input type="checkbox" name="save" id="save">
+                    <label for="save">Save your password</label>
+            
+                </div>
+            
+                <button>LOG IN</button>
+            
+            
+            
+            </form>
+        </div>
+
     </div>
-   
-    <div class="password-container">
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password">
-    </div>
-    
-    <button>login</button>
 
+</div>
 
-
-</form>

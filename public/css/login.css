@@ -1,0 +1,25 @@
+#login-page {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+
+}
+
+#login-banner {
+    display: flex;
+    width: 50%;
+    height: 50%;
+}
+#login-image {
+    width: 50%;
+}
+
+#login-form {
+    width: 50%;
+}
+
+#login-banner {
+    /* border: solid 1px black; */
+    box-shadow: 1px 5px 15px 5px #9A9E99;
+}
