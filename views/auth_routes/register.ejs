@@ -2,27 +2,44 @@
 
 
 <!-- form that renders a login -->
-<h1>Register</h1>
-<!-- send the form data to route /register as a post request -->
-<form action="/register" method="post">
+<!-- want to send the data to the route /login as a post request -->
+<link rel="stylesheet" href="/css/register.css">
+<div id="register-page">
+    <div id="register-banner">
+        <div id="register-image">
+            <!-- <p>hiwad</p> -->
+            <img src="/imgs/login_image.webp" alt="">
+        </div>
+        
+        <div id="register-form">
+            <form action="/login" method="post" class="actual-form">
+        
+                <div class="register-header">
+                    <p>Create an Account</p>
+                </div>
+                
+                <div class="username-container">
+                    <label for="username">Username </label>
+                    <input type="text" id="username" name="username" placeholder="Username">
+                </div>
 
-    <div class="username-container">
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username">
+                <div class="email-container">
+                    <label for="email">Email </label>
+                    <input type="email" id="email" name="email" placeholder="Email">
+                </div>
+               
+                <div class="password-container">
+                    <label for="password">Password </label>
+                    <input type="password" id="password" name="password" placeholder="&#128274; Password">
+                </div>
+                
+
+                
+                <div class="register-button-container">
+                    <button class="register-button">REGISTER</button>
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <div class="email-container">
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="email">
-    </div>
+</div>
 
-    <div class="password-container">
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password">
-    </div>
-    
-    <button>register</button>
-
-
-
-</form>

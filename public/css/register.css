@@ -1,4 +1,4 @@
-#login-page {
+#register-page {
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -6,7 +6,7 @@
 
 }
 
-#login-banner {
+#register-banner {
     display: flex;
     width: 50%;
     height: 50%;
@@ -33,14 +33,14 @@ input[type='password'], input[type='text'] {
     display: block;
 }
 
-.username-container, .password-container {
+.username-container, .password-container, .email-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 12%;
+    height: 20%;
 }
 
-.username-container label, .password-container label {
+.username-container label, .password-container label, .email-container label {
     margin-bottom: 5px;
     font-weight: 600;
     /* font-style: italic; */
@@ -51,7 +51,7 @@ input[type='password'], input[type='text'] {
 }
 
 
-.password-container input, .username-container input {
+.password-container input, .username-container input, .email-container input {
     height: 50%;
     width: 90%;
     background-color: #f1f1f1;
@@ -76,14 +76,15 @@ input[type='password'], input[type='text'] {
 .save-password-container a:hover {
     font-style: italic;
 }
-.login-button-container { 
+
+.register-button-container { 
     display: flex;
     height: 10%;
     width: 100%;
     justify-content: center;
 }
 
-.login-button {
+.register-button {
     /* text-align: center; */
     height: 80%;
     width: 20%;
@@ -94,24 +95,24 @@ input[type='password'], input[type='text'] {
     font-weight: bold;
 } 
 
-.login-button:hover {
+.register-button:hover {
     background-color: #035480;
     cursor: pointer;
 }
 
-#login-image {
+#register-image {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#login-image img{
+#register-image img{
     width: 100%;
     height: 100%;
 }
 
-#login-form {
+#register-form {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -120,12 +121,12 @@ input[type='password'], input[type='text'] {
    
 }
 
-#login-banner {
+#register-banner {
     /* border: solid 1px black; */
     box-shadow: 1px 5px 15px 5px #9A9E99;
 }
 
-#join-header {
+.register-header p {
     margin-bottom: 15px;
     font-size: 1.5rem;
     font-weight: 600;
@@ -137,7 +138,3 @@ input[type='password'], input[type='text'] {
     font-style: italic;
 }
 
-.join-container p a:hover {
-    color: black;
-    text-decoration: underline;
-}
