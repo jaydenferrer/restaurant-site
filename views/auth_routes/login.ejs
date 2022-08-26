@@ -7,26 +7,26 @@
 <div id="login-page">
     <div id="login-banner">
         <div id="login-image">
-            <p>hiwad</p>
-
+            <!-- <p>hiwad</p> -->
+            <img src="/imgs/login_image.webp" alt="">
         </div>
         
         <div id="login-form">
             <form action="/login" method="post" class="actual-form">
         
                 <div class="join-container">
-                    <p>JOIN WITH US</p>
-                    <p>Don't have an account? <a href="/register">Create an account</a></p>
+                    <p id="join-header">JOIN WITH US</p>
+                    <p id="join-create">Don't have an account? <a href="/register">Create an account</a></p>
                 </div>
                 
                 <div class="username-container">
                     <label for="username">Username </label>
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="username" name="username" placeholder="Username">
                 </div>
                
                 <div class="password-container">
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" name="password">
+                    <label for="password">Password </label>
+                    <input type="password" id="password" name="password" placeholder="&#128274; Password">
                 </div>
                 
                 <div class="save-password-container">
@@ -34,8 +34,11 @@
                     <label for="save">Save your password</label>
             
                 </div>
-            
-                <button class="login-button">LOG IN</button>
+                
+                <div class="login-button-container">
+                    <button class="login-button">LOG IN</button>
+                </div>
+             
             
             
             
