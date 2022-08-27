@@ -1,0 +1,12 @@
+/* #page-body {
+    display: flex;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+body main {
+    min-height: 100vh;
+}
