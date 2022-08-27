@@ -1,12 +1,38 @@
 <%- layout('./layouts/boilerplate.ejs') %>
 
+    <link rel="stylesheet" href="/css/show.css">
+    <div class="show-wrapper">
+        <div class="show-image">
+            <img src="<%= foundRestaurant.img %>" alt="">
+        </div>
+        <div class="show-details">
    
-    <h3><%= foundRestaurant.name %></h3>
-    <img src="<%= foundRestaurant.img %>" alt="">
-    <p><%= foundRestaurant.dsc %></p>
-    <p><%= foundRestaurant.country %></p>
-    <a href="/restaurants/<%= foundRestaurant._id %>/edit">EDIT</a>
-    <a href="/restaurants">VIEW ALL RESTAURANTS</a>
-    <form action="/restaurants/<%= foundRestaurant._id %>?_method=DELETE" method="post">
-        <button>DELETE</button>
-    </form>
+                <h3><%= foundRestaurant.name %></h3>
+               
+                <p>Customer Reviews</p>
+                <p id="price">Price PLACEHOLDER</p>
+                <div id="category-wrapper">
+                    <span>Category: BLANK</span>
+                    <span>Country: <%= foundRestaurant.country %></span>
+                </div>
+
+                <p><%= foundRestaurant.dsc %></p>
+                <form action="">
+                    <input type="number" name="quantity" min="1">
+                    <button>ADD TO CART</button>
+
+                </form>
+                <!-- <span><a href="#">ADD TO CART</a></span> -->
+                
+                <div>
+                    <a href="/restaurants/<%= foundRestaurant._id %>/edit">EDIT</a>
+                    <a href="/restaurants">VIEW ALL RESTAURANTS</a>
+                </div>    
+            
+            
+          
+        </div>
+        
+        
+    </div>
+    

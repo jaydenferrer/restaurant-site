@@ -3,6 +3,8 @@ const User = require('../models/users')
 const express = require('express');
 const passport = require('passport')
 
+const {isLoggedIn} = require('../middleware/auth')
+
 const router = express.Router();
 
 // to register, create two routes
@@ -65,7 +67,7 @@ router.post('/login',
 })
 
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isLoggedIn, (req, res) => {
     // use the method req.logout
     // want to terminate login session and remove user data from req.user
     req.logout((err) => {
