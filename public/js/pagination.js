@@ -15,7 +15,7 @@ function appendPageNumber (index) {
     // create a button
     const pageNumber = document.createElement("button");
     // assign the pageNumber element with the pagination number class
-    pageNumber.className = "pagination-number"
+    pageNumber.className = "pagination-nums"
     // append/add the passed index as the buttons text (innerHTML)
     pageNumber.innerHTML = index;
     // used to set page index of each indiviudal page (used as reference later)
@@ -32,19 +32,34 @@ function getPaginationNumbers() {
     }
 }
 
+// adds active class to the page that should be active 
+const handleActivePageNumber = () => {
+    // remove "active" class from all buttons
+    document.querySelectorAll('.pagination-nums').forEach((button) => {
+        button.classList.remove("active");
 
+        const pageIndex = Number(button.getAttribute("page-index"));
+        // if pageindex of button pressed equals the current page, add active class
+        if (pageIndex === currentPage) {
+            button.classList.add("active");
+        }
+    })
+
+    
+}
 
 // DISPLAY ACTIVE PAGE
 
 // sets the currentPage global variable to whatever pagenum we pass in
 const setCurrentPage = (pageNum) => {
     currentPage = pageNum;
-
+    handleActivePageNumber();
     // setting the range for elements to show; page 1: show 1-16, page 2: show 17 - 33
     // lowerbound
     const prevRange = (pageNum - 1) * paginationLimit;
     // upperbound
     const curRange = pageNum * paginationLimit;
+    
 
     gridElements.forEach((item, index) => {
         // hide every element in the grid
@@ -57,17 +72,30 @@ const setCurrentPage = (pageNum) => {
 };
 
 
+
+
 // WHENEVER THE WEBPAGE IS LOADED, we want a pagination list to be filled
 window.addEventListener('load', () => {
     getPaginationNumbers();
     // when webpage loads, we want the currentpage to automatically be set to 1
     setCurrentPage(1);
 
-    // event listeners for the buttons
-    document.querySelectorAll(".pagination-number").forEach((button) => {
-        // get page index for each button 
-        const pageIndex = Number(button.getAttribute("page-index"));
+  
 
+    // event listners for when the prev or next buttons are pressed
+    prevButton.addEventListener("click", () => {
+        setCurrentPage(currentPage - 1);
+    })
+
+    nextButton.addEventListener("click", () => {
+        setCurrentPage(currentPage + 1);
+    })
+
+    // event listeners for the buttons
+    document.querySelectorAll(".pagination-nums").forEach((button) => {
+        // get page index for each button 
+      
+        const pageIndex = Number(button.getAttribute("page-index"));
         // if a pageIndex exists, then I think this means a button was pressed, 
         // hence call the event listener
         if (pageIndex) {
