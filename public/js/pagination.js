@@ -31,7 +31,37 @@ function getPaginationNumbers() {
     }
 }
 
+
+
+// DISPLAY ACTIVE PAGE
+
+// sets the currentPage global variable to whatever pagenum we pass in
+const setCurrentPage = (pageNum) => {
+    currentPage = pageNum;
+
+    // setting the range for elements to show; page 1: show 1-16, page 2: show 17 - 33
+    // lowerbound
+    const prevRange = (pageNum - 1) * paginationLimit;
+    // upperbound
+    const curRange = pageNum * paginationLimit;
+
+    gridElements.forEach((item, index) => {
+        // hide every element in the grid
+        item.classList.add("hidden");
+        // except, don't hide elements with the index that are within our provided ranges 
+        if (index >= prevRange && index < curRange) {
+            item.classList.remove("hidden");
+        }
+    })
+};
+
+
 // WHENEVER THE WEBPAGE IS LOADED, we want a pagination list to be filled
 window.addEventListener('load', () => {
     getPaginationNumbers();
+    // when webpage loads, we want the currentpage to automatically be set to 1
+    setCurrentPage(1);
 })
+
+
+
