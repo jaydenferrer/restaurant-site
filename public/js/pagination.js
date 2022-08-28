@@ -48,12 +48,49 @@ const handleActivePageNumber = () => {
     
 }
 
+// FUNCTIONS TO DISABLE BUTTONS WHEN YOUR ON THE FIRST AND LAST PAGINATION NUMS
+const disableButton = (button) => {
+    // adding the disabled class
+    button.classList.add("disabled");
+    button.setAttribute("disabled", true);
+}
+
+const enableButton = (button) => {
+    // remvoing disabled class AND attribute
+    button.classList.remove("disabled");
+    button.removeAttribute("disabled");
+}
+
+const pageButtonStatus = () => {
+    // if current page is one, then want to disable prevButton
+    if (currentPage === 1) {
+        disableButton(prevButton)
+    }
+    // if its not, enable the button
+    else {
+        enableButton(prevButton)
+    }
+    // if current page is the last page, then disable next button
+    if (currentPage === pageCount) {
+        disableButton(nextButton)
+    }
+    // if its not, enable the button
+    else {
+        enableButton(nextButton);
+    }
+}
 // DISPLAY ACTIVE PAGE
 
 // sets the currentPage global variable to whatever pagenum we pass in
 const setCurrentPage = (pageNum) => {
     currentPage = pageNum;
+    // everytime we set the page we want to:
+    // handle the current active page
     handleActivePageNumber();
+    // handle the status of the prev and next buttons
+    pageButtonStatus();
+
+    
     // setting the range for elements to show; page 1: show 1-16, page 2: show 17 - 33
     // lowerbound
     const prevRange = (pageNum - 1) * paginationLimit;
@@ -70,7 +107,6 @@ const setCurrentPage = (pageNum) => {
         }
     })
 };
-
 
 
 
