@@ -1,0 +1,24 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+}
+
+.pagination-nums, .pagination-button {
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.pagination-nums:hover {
+    background: #fff
+}
+
+.pagination-nums:active {
+    color: #fff;
+    background: #0085b6;
+}

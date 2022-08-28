@@ -2,6 +2,7 @@
     <%- layout('./layouts/boilerplate.ejs') %>
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/stars.css">
+    <link rel="stylesheet" href="/css/pagination.css">
     <title>Restaurants</title>
     
     <div id="home-header">
@@ -124,10 +125,10 @@
          
         </section>
         <!-- div for the restaurant grid section -->
-        <section id="restaurant-grid">
+        <section id="restaurant-grid" id="paginated-grid">
             <!-- iterating through each restaurant and giving it its own div  -->
             <% for (restaurant of allRestaurants) { %>
-                <div class="restaurant-grid-element container">
+                <div class="restaurant-grid-element container" >
                     <div class="tag-heart tag-shape hidden"><i class="fa-regular fa-heart"></i></div>
                     <div class="tag-shop tag-shape hidden"><i class="fa-solid fa-cart-shopping"></i></div>
                     <div></div>
@@ -138,9 +139,18 @@
                 </div> 
             <% } %> 
         </section>
+       
 
 
     </div>
+
+    <nav class="pagination-container">
+        <button class="pagination-button" id="prev-button">&lt</button>
+        <div id="pagination-nums">
+
+        </div>
+        <button class="pagination-button" id="next-button">&gt</button>
+    </nav>
 
     <div class="restaurant-new">
         <p>Know a restaurant not on the list?</p>
@@ -148,5 +158,5 @@
     </div>
    
     <script src="/js/home.js"></script>
-   
+    <script src="/js/pagination.js"></script>
     
