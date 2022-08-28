@@ -18,6 +18,7 @@ function appendPageNumber (index) {
     pageNumber.className = "pagination-number"
     // append/add the passed index as the buttons text (innerHTML)
     pageNumber.innerHTML = index;
+    // used to set page index of each indiviudal page (used as reference later)
     pageNumber.setAttribute("page-index", index);
     // add the button to the overall pagination parent element
     paginationNumbers.appendChild(pageNumber);
@@ -61,6 +62,22 @@ window.addEventListener('load', () => {
     getPaginationNumbers();
     // when webpage loads, we want the currentpage to automatically be set to 1
     setCurrentPage(1);
+
+    // event listeners for the buttons
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+        // get page index for each button 
+        const pageIndex = Number(button.getAttribute("page-index"));
+
+        // if a pageIndex exists, then I think this means a button was pressed, 
+        // hence call the event listener
+        if (pageIndex) {
+            // create event listener for pagination number clicks
+            button.addEventListener("click", () => {
+                // sets current page to the pageIndex that was pressed
+                setCurrentPage(pageIndex);
+            })
+        }
+    })
 })
 
 
