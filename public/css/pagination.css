@@ -5,7 +5,12 @@
     /* position: absolute; */
 }
 
+.pagination-nums {
+   box-shadow: 1px 5px 15px 5px #daddd9;
+}
 .pagination-nums, .pagination-button {
+    font-family: 'Space Mono', monospace;
+    margin: 5px;
     font-size: 1.1rem;
     background-color: transparent;
     border: none;
@@ -15,12 +20,14 @@
 }
 
 .pagination-nums:hover {
-    background: #fff
+    background: #f1f0f0;
+    
 }
 
 .active {
-    color: #fff;
-    background: #0085b6;
+    color: black;
+    background: #f1f1f1;
+
 }
 
 .hidden {
