@@ -1,0 +1,12 @@
+#home-header {
+    height: 25vh;
+    text-align: center;
+    background: #252729;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    color: white;
+    font-size: 2rem;
+}
