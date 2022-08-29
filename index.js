@@ -147,7 +147,8 @@ app.use((err, req, res, next) => {
     // set defaults because some errors many not have defined values
     const {message = "An Error Has Occured!", statusCode = 400} = err;
     // console.log(message, statusCode);
-    res.send(`${message}`).status(statusCode);
+    // res.send(`${message}`).status(statusCode);
+    res.render('main_routes/error.ejs', {message, statusCode})
 })
 
 

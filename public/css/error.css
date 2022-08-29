@@ -1,0 +1,25 @@
+#main-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Space Mono', monospace;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.error-header {
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.error-text {
+    margin-bottom: 100px;
+}
+
+.error-text a {
+    text-decoration: none;
+    font-style: italic;
+    color: black;
+}

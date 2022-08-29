@@ -7,6 +7,7 @@
 
 .pagination-nums {
    box-shadow: 1px 5px 15px 5px #daddd9;
+   border-radius: 0.5rem;
 }
 .pagination-nums, .pagination-button {
     font-family: 'Space Mono', monospace;
