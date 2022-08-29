@@ -10,3 +10,32 @@
     color: white;
     font-size: 2rem;
 }
+
+/* STYLING FOR WORK IN PROGRESS PAGE */
+/* adding work in progress styling here */
+.work-in-progress {
+    font-family: 'Space Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* font-size: 2.5rem; */
+    /* height: 100vh; */
+}
+
+#header {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#image {
+    width: 100px;
+}
+/* END OF WORK IN PROGRESS PAGE */
+
