@@ -6,95 +6,40 @@ const Restaurant = require('../models/restaurants.cjs');
 const User = require('../models/users')
 const wrapAsync = require('../utils/wrapAsync');
 const { isLoggedIn } = require('../middleware/auth.js');
-
+// restaurant controller functions
+const { homePage, renderNewForm, addNewRestaurant, showRestaurant, renderEditForm, editRestaurant, deleteRestaurant} = require('../controllers/restaurants')
 // home route handler
-router.get('/', wrapAsync(async (req, res) => {
-    // idea: want to go into the database and just extract the entire array that contains the objects 
-    let allRestaurants = await Restaurant.find({});
-    res.render('main_routes/home.ejs', { allRestaurants });
-}));
+router.get('/', wrapAsync(homePage));
 
 //CRUD FUNCTIONALITY FOR NEW RESTAURANTS
 //menu route handler
 
 // new route: /comments/new
 // this is a route to simply render a new form 
-router.get('/new', isLoggedIn, (req, res) => {
-    // nothing to search for 
-    res.render('restaurant_crud/new.ejs');
-})
+// ADD BACK ISLOGGEDIN
+router.get('/new', renderNewForm)
 
 // create route: /comments (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
 // also want middleware here b/c someone could send a post request using an external source, so still want to protect it 
-router.post('/', isLoggedIn, wrapAsync(async (req, res) => {
-
-    
-    // destructure the request body, or just pass it as a new item we want to add 
-    const newRestaurant = new Restaurant(req.body.restaurant);
-
-    // add new user
-    // create new user object given the details in req.user
-    // save the object id of the new object into newRestaurant
-    const { username, password, email } = req.user;
-    // create new author object with the destructed username, password and email from req.user
-    const author = new User({username, password, email});
-    
-    console.log(author);
-    // newRestaurant.author = author._id;
-
-    // pass new restaruant in
-    const result = await newRestaurant.save();
-    res.redirect(`/restaurants/${newRestaurant._id}`)
-}));
+// ADD BACK ISLOGGEDIN
+router.post('/', wrapAsync(addNewRestaurant));
 
 
 // individual show route: /restaurants/:id
-router.get('/:id', wrapAsync(async (req, res, next) => {
-    // need to search for restaurant given the id
-    const id = req.params.id;
-    const foundRestaurant = await Restaurant.findById(id);
-    if (!foundRestaurant) {
-        // since we have wrapAsync, we can throw our own errors which will get caught 
-        throw new AppError("Could not find a restaurant with that ID", 404);
-    }
-    else {
-        res.render('restaurant_crud/show.ejs', { foundRestaurant })
-    }
-}));
+router.get('/:id', wrapAsync(showRestaurant));
 
 // edit route: /restaurants/:id/edit
 // render form 
-router.get('/:id/edit', isLoggedIn, wrapAsync(async (req, res) => {
-    const id = req.params.id;
-    const foundRestaurant = await Restaurant.findById(id);
-    res.render('restaurant_crud/edit.ejs', { foundRestaurant })
-}));
+// ADD BACK ISLOGGEDIN
+router.get('/:id/edit', wrapAsync(renderEditForm));
 
-router.patch('/:id', isLoggedIn, wrapAsync(async (req, res) => {
-    // console.log("PATCH REQUEST");
-    const updatedRestaurant = req.body.restaurant;
-    // console.log(updatedRestaurant);
-    const id = req.params.id 
-    // spread the contents of updatedRestaurant in the current Restaurant model with the given id 
-    // replacing the current model's we find properties with the new ones
-    // hence, here we could just  spread updatedRestaurant (...updatedRestaurant)
-    await Restaurant.findByIdAndUpdate(id, { 
-        name: updatedRestaurant.name,
-        country: updatedRestaurant.country,
-        img : updatedRestaurant.img,
-        rate: updatedRestaurant.rate,
-        dsc: updatedRestaurant.dsc
-    })
-    res.redirect(`/restaurants/${id}`);
-}));
+// ADD BACK ISLOGGEDIN
+router.patch('/:id', wrapAsync(editRestaurant));
 
+// ADD BACK ISLOGGEDIN
 // delete route 
-router.delete('/:id', isLoggedIn, wrapAsync(async (req, res) => {
-    const id = req.params.id;
-    await Restaurant.findByIdAndDelete(id);
-    res.redirect('/restaurants')
-}));
+router.delete('/:id', wrapAsync(deleteRestaurant));
 
 module.exports = router;
 // END OF RESTAURANT CRUD 
