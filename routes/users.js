@@ -4,7 +4,7 @@ const express = require('express');
 const passport = require('passport')
 
 const {isLoggedIn} = require('../middleware/auth')
-const {renderRegisterForm, registerUser, renderLoginForm, loginUser} = require('../controllers/users')
+const {renderRegisterForm, registerUser, renderLoginForm, loginUser, logOutUser} = require('../controllers/users')
 const router = express.Router();
 
 // to register, create two routes
