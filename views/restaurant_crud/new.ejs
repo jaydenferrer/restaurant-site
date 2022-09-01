@@ -1,37 +1,54 @@
 <%- layout('./layouts/boilerplate.ejs') %>
-    <h1>New Restaurants Form</h1>
-    <h1>Add a new restaurant to the list</h1>
+    <link rel="stylesheet" href="/css/restaurant_crud/new.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <div id="home-header">
+        <h2>NEW RESTAURANT</h2>
+    </div>
+    
+    
+    <div id="page-container">
+
+<!--     
+    <h1>Add a new restaurant to the list</h1> -->
      <!-- want the form to send a post request to /restaurants to actually update the database and webpage -->
+
+    
      <form action="/restaurants" method="post">
 
         <!-- name attribute is how the data will be saved in JS object when submitted -->
-        <div>
+        <div class="form-input">
             <label for="name">Restaurant Name</label>
             <input type="text" id="name" name="restaurant[name]">
         </div>
       
-        <div>
+        <div class="form-input">
             <label for="country">Restaurant Location</label>
             <input type="text" id="country" name="restaurant[country]">
-        </div>
+        </div >
      
-        <div>
+        <div class="form-input">
             <label for="dsc">Description</label>
             <input type="text" id="dsc" name="restaurant[dsc]">
         </div>
         
-        <div>
+        <div class="form-input">
             <label for="rate">Rating</label>
             <input type="number" id="rate" name="restaurant[rate]">
         </div>
         
-        <div>
+        <div class="form-input">
             <label for="img">Provide an Image</label>
             <input type="text" id="img" name="restaurant[img]">
         </div>
 
-        <button>Submit</button>
+        <div class="button-wrapper">
+            <button>SUBMIT</button>
+        </div>
         
-        <a href="/restaurants">VIEW ALL RESTAURANTS</a>
+        
+        <div class="back-wrapper"> 
+            <a href="/restaurants">VIEW ALL RESTAURANTS</a>
+        </div>
 
     </form>
+</div>
