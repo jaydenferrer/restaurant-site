@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const Restaurant = require('../models/restaurants.cjs');
+const User = require('../models/users')
 const wrapAsync = require('../utils/wrapAsync');
 const { isLoggedIn } = require('../middleware/auth.js');
 
@@ -28,8 +29,20 @@ router.get('/new', isLoggedIn, (req, res) => {
 // also want middleware here b/c someone could send a post request using an external source, so still want to protect it 
 router.post('/', isLoggedIn, wrapAsync(async (req, res) => {
 
+    
     // destructure the request body, or just pass it as a new item we want to add 
     const newRestaurant = new Restaurant(req.body.restaurant);
+
+    // add new user
+    // create new user object given the details in req.user
+    // save the object id of the new object into newRestaurant
+    const { username, password, email } = req.user;
+    // create new author object with the destructed username, password and email from req.user
+    const author = new User({username, password, email});
+    
+    console.log(author);
+    // newRestaurant.author = author._id;
+
     // pass new restaruant in
     const result = await newRestaurant.save();
     res.redirect(`/restaurants/${newRestaurant._id}`)

@@ -12,4 +12,23 @@ function isLoggedIn (req, res, next) {
     }
 }
 
+
+// isAuthor: want to check if a user is the author of the given restaurant
+// if user is the author, then we want to call next() and proceed to the next middleware/route handler
+// if user is NOT the author, then we want to just redirect back to restaurant page and flash a message/tell them person they are not the user
+
+function isAuthor (req, res, next) {
+    // req.user is filled when a user logs in 
+    // current user is equal to whatever the logged in user is (if there is); but authentication occurs before this
+    // hence a user needs to be logged in already
+    // if the req.user equals the currentUser, 
+    // need to create variable that stores the user, so we need to update the database 
+    if (req.user === currentUser) {
+        next();
+    }
+    else {
+        console.log("YOU ARE NOT THE AUTHOR")
+        res.redirect('/restaurants')
+    }
+}
 module.exports.isLoggedIn = isLoggedIn;
