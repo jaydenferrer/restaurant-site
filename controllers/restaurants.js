@@ -87,4 +87,4 @@ module.exports.addNewRestaurant = addNewRestaurant;
 module.exports.showRestaurant = showRestaurant;
 module.exports.renderEditForm = renderEditForm;
 module.exports.editRestaurant = editRestaurant;
-module.exports.deleteRestaurant;
+module.exports.deleteRestaurant = deleteRestaurant;
