@@ -17,13 +17,13 @@ router.get('/', wrapAsync(homePage));
 // new route: /comments/new
 // this is a route to simply render a new form 
 // ADD BACK ISLOGGEDIN
-router.get('/new', renderNewForm)
+router.get('/new', isLoggedIn, renderNewForm)
 
 // create route: /comments (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
 // also want middleware here b/c someone could send a post request using an external source, so still want to protect it 
 // ADD BACK ISLOGGEDIN
-router.post('/', wrapAsync(addNewRestaurant));
+router.post('/', isLoggedIn, wrapAsync(addNewRestaurant));
 
 
 // individual show route: /restaurants/:id
@@ -32,14 +32,14 @@ router.get('/:id', wrapAsync(showRestaurant));
 // edit route: /restaurants/:id/edit
 // render form 
 // ADD BACK ISLOGGEDIN
-router.get('/:id/edit', wrapAsync(renderEditForm));
+router.get('/:id/edit', isLoggedIn, wrapAsync(renderEditForm));
 
 // ADD BACK ISLOGGEDIN
-router.patch('/:id', wrapAsync(editRestaurant));
+router.patch('/:id', isLoggedIn, wrapAsync(editRestaurant));
 
 // ADD BACK ISLOGGEDIN
 // delete route 
-router.delete('/:id', wrapAsync(deleteRestaurant));
+router.delete('/:id', isLoggedIn, wrapAsync(deleteRestaurant));
 
 module.exports = router;
 // END OF RESTAURANT CRUD 
