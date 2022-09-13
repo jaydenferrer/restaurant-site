@@ -109,7 +109,7 @@ const userRoutes = require('./routes/users')
 // NOTE NEED TO ADD ERROR HANDLING ETC.
 // creates get route handler for path '/'
 app.get('/', (req, res) => {
-    res.send("Home page");
+    res.render("main_routes/landingPage.ejs")
 })
 
 // adds prefix /restaurant to routes in restaurantRoutes
