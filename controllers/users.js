@@ -4,10 +4,12 @@ const User = require('../models/users')
 const passport = require('passport')
 
 const renderRegisterForm = (req, res) => {
+    console.log("hellowd");
     res.render('auth_routes/register.ejs')
 }
 
 const registerUser = async (req, res) => {
+    console.log("hello");
     // when data is submitted, extract username, email and password
     console.log(req.body);
     // destructuring from the req body, contains submitted data
