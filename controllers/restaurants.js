@@ -24,10 +24,10 @@ const addNewRestaurant = async (req, res) => {
     // add new user and link with restaurant
     // create new user object given the details in req.user
     // save the object id of the new object into newRestaurant
-    const { username, password, email } = req.user;
+    //const { username, password, email } = req.user;
     // create new author object with the destructed username, password and email from req.user
-    const author = new User({username, password, email});
-    newRestaurant.author = req.user._id;
+    //const author = new User({username, password, email});
+   // newRestaurant.author = req.user._id;
 
     // save new restaurant into database
     const result = await newRestaurant.save();

@@ -14,12 +14,12 @@ router.get('/', wrapAsync(homePage));
 //CRUD FUNCTIONALITY FOR NEW RESTAURANTS
 //menu route handler
 
-// new route: /comments/new
+// new route: /restaurant/new
 // this is a route to simply render a new form 
 // ADD BACK ISLOGGEDIN
 router.get('/new', renderNewForm)
 
-// create route: /comments (post)
+// create route: /restaurants (post)
 // route takes submitted form and creates new restaurants object and adds it to the db
 // also want middleware here b/c someone could send a post request using an external source, so still want to protect it 
 // ADD BACK ISLOGGEDIN
