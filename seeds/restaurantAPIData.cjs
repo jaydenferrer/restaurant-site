@@ -5,13 +5,17 @@ let globalBurgerData;
 // here we will export data from the restaurant API
 // using free-food-menus-api created by https://github.com/igdev116/free-food-menus-api
 
-// returns a promise, so we can use this to then extract data from function and store it somewhere
+// function that will get burger data from the called API
+// async because fetching from an API can take time
+// returns a promise that can be thened or catched
 async function getBurgerRestaurantData() {
     try {
+        // fetch data from API
         const response = await fetch('https://ig-food-menus.herokuapp.com/burgers');
+        // need to parse through the fetched data such that the data is in JSON
         const burgerData = await response.json();
         console.log("Data sucessfully fetched");
-        // console.log(burgerData);
+        
         return burgerData;
     }
     catch (err) {
@@ -19,13 +23,6 @@ async function getBurgerRestaurantData() {
     }
 }
 
-// getBurgerRestaurantData()
-//     .then((burgerData) => {
-//         console.log(burgerData[0].name);
-//         // module.exports = burgerData;
-//     })
-
 module.exports = getBurgerRestaurantData;
 
-// console.log(globalBurgerData[0].country)
-// // need a way to extract the burgerData and export it gloabbaly 
+

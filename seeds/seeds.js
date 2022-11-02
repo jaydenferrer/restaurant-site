@@ -21,11 +21,13 @@ const getBurgerRestaurantData = require('./restaurantAPIData.cjs');
 
 console.log("Running the seeds.js file");
 
+// invoke the function that will get burger data
 getBurgerRestaurantData()
+    // latch on a .then() to extract data if successful
     .then( async (burgerData) => {
         console.log("Sucessfully extracted the burger data in the seeds.js file");
         console.log(burgerData);
-         // module.exports = burgerData;
+      
          // burgerData stored in an array of objects, we want to iterate through the array for each object 
         // data refers to a single element,
         for (data of burgerData) {

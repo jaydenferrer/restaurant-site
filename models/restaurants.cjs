@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 // a file that will contain our models 
 
 const User = require('../models/users')
+
+
 // defines our restaurant schema (how data should be stored in the mongo db)
 const restaurantSchema = new mongoose.Schema({
     name: String,
@@ -20,7 +22,6 @@ const restaurantSchema = new mongoose.Schema({
 })
 
 // create a model using our schema
-
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 module.exports = Restaurant;

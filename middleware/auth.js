@@ -4,7 +4,7 @@
 
 const Restaurant = require('../models/restaurants.cjs')
 function isLoggedIn (req, res, next) { 
-    // if user is present, means req is authenicated, call next
+    // if user is present, means req is authenicated, call next (uses passport middleware to check)
     if (req.isAuthenticated()) {
         next();
     }
@@ -17,7 +17,7 @@ function isLoggedIn (req, res, next) {
 // isAuthor: want to check if a user is the author of the given restaurant
 // if user is the author, then we want to call next() and proceed to the next middleware/route handler
 // if user is NOT the author, then we want to just redirect back to restaurant page and flash a message/tell them person they are not the user
-
+// NOTE: STILL WORK IN PROGRESS
 async function isAuthor (req, res, next) {
     // called when a request occurs, destructure req params to know which page is sending the request
     // this middleware is only called for requests that have an id in the params
@@ -41,6 +41,8 @@ async function isAuthor (req, res, next) {
     // need to create variable that stores the user, so we need to update the database 
     console.log(req.body.author);
     next();
+
+    // COMMENTED OUT DUE TO AUTH BUGS, ADD BACK LATER
     // if (currentUser) {
     //     next();
     // }
