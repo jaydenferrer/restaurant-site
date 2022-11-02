@@ -5,7 +5,7 @@ const router = express.Router();
 const Restaurant = require('../models/restaurants.cjs');
 const User = require('../models/users')
 const wrapAsync = require('../utils/wrapAsync');
-const { isLoggedIn } = require('../middleware/auth.js');
+const { isLoggedIn, isAuthor } = require('../middleware/auth.js');
 // restaurant controller functions
 const { homePage, renderNewForm, addNewRestaurant, showRestaurant, renderEditForm, editRestaurant, deleteRestaurant} = require('../controllers/restaurants')
 // home route handler
@@ -35,7 +35,7 @@ router.get('/:id', wrapAsync(showRestaurant));
 router.get('/:id/edit', isLoggedIn, wrapAsync(renderEditForm));
 
 // ADD BACK ISLOGGEDIN
-router.patch('/:id', isLoggedIn, wrapAsync(editRestaurant));
+router.patch('/:id', isAuthor, isLoggedIn, wrapAsync(editRestaurant));
 
 // ADD BACK ISLOGGEDIN
 // delete route 

@@ -1,6 +1,6 @@
 // file to store logic for restaurant routes 
 const Restaurant = require('../models/restaurants.cjs')
-
+const User = require('../models/users')
 
 const homePage = async (req, res) => {
     // idea: want to go into the database and just extract the entire array that contains the objects 
@@ -24,13 +24,14 @@ const addNewRestaurant = async (req, res) => {
     // save the object id of the new object into newRestaurant
 
     // ADD BACK AUTHENTICATION STUFF LATER!!!!!!!!!!!!!!!!
-    // const { username, password, email } = req.user;
-    // // create new author object with the destructed username, password and email from req.user
-    // const author = new User({username, password, email});
+    const { username, password, email } = req.user;
+    // create new author object with the destructed username, password and email from req.user
+    const author = new User({username, password, email});
     
-    // console.log(author);
-    // newRestaurant.author = author._id;
+    console.log(author);
+    newRestaurant.author = req.user._id;
 
+    console.log(newRestaurant);
     // pass new restaruant in
     const result = await newRestaurant.save();
     res.redirect(`/restaurants/${newRestaurant._id}`)
