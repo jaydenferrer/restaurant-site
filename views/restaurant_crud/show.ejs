@@ -26,8 +26,15 @@
                 
                 <div>
                     <a href="/restaurants/<%= foundRestaurant._id %>/edit">EDIT</a>
+                    
                     <a href="/restaurants">VIEW ALL RESTAURANTS</a>
-                </div>    
+
+                    
+                </div>   
+                
+                <form  action="/restaurants/<%= foundRestaurant._id%>?_method=DELETE" method="post">
+                    <button class="btn btn-success">DELETE</button>
+                </form>
             
             
           
