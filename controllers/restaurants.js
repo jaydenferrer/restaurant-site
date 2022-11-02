@@ -2,41 +2,39 @@
 const Restaurant = require('../models/restaurants.cjs')
 const User = require('../models/users')
 
+// render all restaurants on restaurant page
 const homePage = async (req, res) => {
     // idea: want to go into the database and just extract the entire array that contains the objects 
     let allRestaurants = await Restaurant.find({});
     res.render('main_routes/home.ejs', { allRestaurants });
 }
 
+// render new restaurant form
 const renderNewForm = (req, res) => {
     // nothing to search for 
     res.render('restaurant_crud/new.ejs');
 }
 
+// adds new restaurant
 const addNewRestaurant = async (req, res) => {
 
-    
     // destructure the request body, or just pass it as a new item we want to add 
     const newRestaurant = new Restaurant(req.body.restaurant);
 
-    // add new user
+    // add new user and link with restaurant
     // create new user object given the details in req.user
     // save the object id of the new object into newRestaurant
-
-    // ADD BACK AUTHENTICATION STUFF LATER!!!!!!!!!!!!!!!!
     const { username, password, email } = req.user;
     // create new author object with the destructed username, password and email from req.user
     const author = new User({username, password, email});
-    
-    console.log(author);
     newRestaurant.author = req.user._id;
 
-    console.log(newRestaurant);
-    // pass new restaruant in
+    // save new restaurant into database
     const result = await newRestaurant.save();
     res.redirect(`/restaurants/${newRestaurant._id}`)
 }
 
+// renders single restaurant that has been clicked
 const showRestaurant = async (req, res, next) => {
     // need to search for restaurant given the id
     const id = req.params.id;
@@ -50,20 +48,21 @@ const showRestaurant = async (req, res, next) => {
     }
 }
 
+// render edit form
 const renderEditForm = async (req, res) => {
     const id = req.params.id;
     const foundRestaurant = await Restaurant.findById(id);
     res.render('restaurant_crud/edit.ejs', { foundRestaurant })
 }
 
+// middleware for editing the restaurant
 const editRestaurant = async (req, res) => {
-    // console.log("PATCH REQUEST");
+
     const updatedRestaurant = req.body.restaurant;
-    // console.log(updatedRestaurant);
+
     const id = req.params.id 
-    // spread the contents of updatedRestaurant in the current Restaurant model with the given id 
-    // replacing the current model's we find properties with the new ones
-    // hence, here we could just  spread updatedRestaurant (...updatedRestaurant)
+
+    // find restaurant in database given the id, update it with the new details from submitted form
     await Restaurant.findByIdAndUpdate(id, { 
         name: updatedRestaurant.name,
         country: updatedRestaurant.country,
@@ -74,13 +73,13 @@ const editRestaurant = async (req, res) => {
     res.redirect(`/restaurants/${id}`);
 }
 
+// deletes a restaurant
 const deleteRestaurant = async (req, res) => {
     const id = req.params.id;
+    // find restaurant given its id and deletes it
     await Restaurant.findByIdAndDelete(id);
     res.redirect('/restaurants')
 }
-
-
 
 module.exports.homePage = homePage;
 module.exports.renderNewForm = renderNewForm;

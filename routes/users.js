@@ -32,7 +32,7 @@ router.post('/login',
     loginUser
 )
 // logout route
-router.get('/logout', isLoggedIn, logOutUser)
+router.get('/logout', logOutUser)
 
 
 module.exports = router;
